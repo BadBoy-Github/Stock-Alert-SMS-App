@@ -74,13 +74,15 @@ if percentage > 0:
     get_news()
     print(f"{STOCK_NAME}: {sign}{percentage}%\n\nHeadline: {title_list[0]}\nBrief: {description_list[0]}")
 
-    # client = Client(twilio_sid, twilio_api)
-    # message = client.messages.create(
-    #     body=f"{STOCK_NAME}: {sign}{percentage}%\n\nHeadline: {title_list[0]}\nBrief: {description_list[0]}\n\nHeadline: {title_list[1]}\nBrief: {description_list[1]}\n\nHeadline: {title_list[2]}\nBrief: {description_list[2]}",
-    #     from_="+18142595432",
-    #     to="+919842852121"
-    # )
-    # print(message.status)
+    message = f"{STOCK_NAME}: {sign}{percentage}%\n\nHeadline: {title_list[0]}\nBrief: {description_list[0]}\n\nHeadline: {title_list[1]}\nBrief: {description_list[1]}\n\nHeadline: {title_list[2]}\nBrief: {description_list[2]}"
+
+    client = Client(twilio_sid, twilio_api)
+    message = client.messages.create(
+        body= message,
+        from_="+18142595432",
+        to="+919842852121"
+    )
+    print(message.status)
 
 
 

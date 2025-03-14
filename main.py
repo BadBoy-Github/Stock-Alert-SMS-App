@@ -75,8 +75,7 @@ if percentage > 0:
     message_news = f"Headline: {title_list[0]}\nBrief: {description_list[0]}"
 
     # Print the message to be sent via Twilio for debugging
-    print("Message to be sent via Twilio:")
-    print(message_sms)
+    print("Message to be sent via Twilio")
 
     try:
         client = Client(twilio_sid, twilio_api)

@@ -1,4 +1,3 @@
-
 import os
 import requests
 from twilio.rest import Client
@@ -51,7 +50,6 @@ def get_news():
         title_list.append(article["title"])
         description_list.append(article["description"])
 
-
 stock_data = data["Time Series (Daily)"]
 stock_list = list(stock_data)
 
@@ -72,17 +70,20 @@ if diff < 0:
 percentage = round(percentage, 2)
 if percentage > 0:
     get_news()
-    print(f"{STOCK_NAME}: {sign}{percentage}%\n\nHeadline: {title_list[0]}\nBrief: {description_list[0]}")
 
     message = f"{STOCK_NAME}: {sign}{percentage}%\n\nHeadline: {title_list[0]}\nBrief: {description_list[0]}\n\nHeadline: {title_list[1]}\nBrief: {description_list[1]}\n\nHeadline: {title_list[2]}\nBrief: {description_list[2]}"
 
-    client = Client(twilio_sid, twilio_api)
-    message = client.messages.create(
-        body= message,
-        from_="+18142595432",
-        to="+919842852121"
-    )
-    print(message.status)
+    # Print the message to be sent via Twilio for debugging
+    print("Message to be sent via Twilio:")
+    print(message)
 
-
-
+    try:
+        client = Client(twilio_sid, twilio_api)
+        message = client.messages.create(
+            body=message,
+            from_="+18142595432",
+            to="+919842852121"
+        )
+        print(f"Message status: {message.status}")
+    except Exception as e:
+        print(f"An error occurred while sending the message: {e}")

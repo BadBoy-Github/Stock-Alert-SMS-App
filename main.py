@@ -71,17 +71,26 @@ percentage = round(percentage, 2)
 if percentage > 0:
     get_news()
 
-    message = f"{STOCK_NAME}: {sign}{percentage}%\n\nHeadline: {title_list[0]}\nBrief: {description_list[0]}\n\nHeadline: {title_list[1]}\nBrief: {description_list[1]}\n\nHeadline: {title_list[2]}\nBrief: {description_list[2]}"
+    message_sms = f"{STOCK_NAME}: {sign}{percentage}%"
+    message_news = f"Headline: {title_list[0]}\nBrief: {description_list[0]}"
 
     # Print the message to be sent via Twilio for debugging
     print("Message to be sent via Twilio:")
-    print(message)
+    print(message_sms)
 
     try:
         client = Client(twilio_sid, twilio_api)
         message = client.messages.create(
-            body=message,
-            from_="+18142595432",
+            from_="+16319864093",
+            body=message_sms,
+            to="+919842852121"
+        )
+        print(f"Message status: {message.status}")
+
+        client = Client(twilio_sid, twilio_api)
+        message = client.messages.create(
+            from_="+16319864093",
+            body=message_news,
             to="+919842852121"
         )
         print(f"Message status: {message.status}")

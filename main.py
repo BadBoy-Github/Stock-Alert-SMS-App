@@ -85,7 +85,7 @@ if percentage > 0:
             body=message_sms,
             to="+919842852121"
         )
-        print(f"Message status: {message.status}")
+        print(f"Message overview status: {message.status}")
 
         client = Client(twilio_sid, twilio_api)
         message = client.messages.create(
@@ -93,6 +93,6 @@ if percentage > 0:
             body=message_news,
             to="+919842852121"
         )
-        print(f"Message status: {message.status}")
+        print(f"Message news status: {message.status}")
     except Exception as e:
         print(f"An error occurred while sending the message: {e}")
